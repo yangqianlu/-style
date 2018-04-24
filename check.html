@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .select_container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .refund_reason {
+            flex: 1
+        }
+
+        .right_reason {
+            flex: 2;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .select-view .title {
+            color: #333
+        }
+
+        .popup-main-select {
+            position: absolute;
+            width: 100%;
+            height: 62.5%;
+            z-index: 99;
+            left: 0;
+            bottom: 0;
+            background: #fff;
+            display: none;
+        }
+
+        .popup-main-select .title-area {
+            position: absolute;
+            width: 100%;
+            background-color: #fff;
+            z-index: 99;
+        }
+
+        .popup-main-select .title-area h3 {
+            margin: 20px 0 3px;
+            height: 18px;
+            line-height: 18px;
+            font-weight: 400;
+            font-size: 16px;
+            color: #3d4245;
+            text-align: center;
+        }
+
+        .popup-main-select .option-area {
+            height: 100%;
+            overflow-y: scroll;
+        }
+
+        .popup-main-select ul {
+            margin-bottom: 40px;
+            padding: 0 0 0 12px;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .popup-main-select li {
+            justify-content:space-between;
+            position: relative;
+            padding: 12px 12px 12px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #e7e7e7;
+            color: #3d4245;
+            text-align: left;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        }
+        .mod-select .toggle-icon,
+        .toggle-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            border: 1px solid #999;
+            -webkit-box-flex: 0;
+            -ms-flex: none;
+            flex: none;
+            -mos-border-radius: 11px;
+            border-radius: 11px;
+        }
+
+        .popup-main-select .sticky-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .popup-main-select button {
+            width: 100%;
+            height: 48px;
+            line-height: 3em;
+            font-size: 16px;
+            background: #ff0036;
+            color: #fff;
+            border: none;
+            text-align: center;
+        }
+
+        .toggle-icon.selected {
+            background-color: #ff0036;
+            border: 1px solid #ff0036;
+        }
+
+       
+        .popup-bg-select {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: #000;
+            opacity: .7;
+            z-index: 98;
+            -webkit-transition: opacity .3s ease;
+            transition: opacity .3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup-bg-select"></div>
+    <div class="select_container">
+        <span class="refund_reason">退款原因</span>
+        <div class="right_reason">
+            <div class="select-view">
+                <span class="title">请选择</span>
+                <span class="arrow">></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-main-select">
+        <div class="title-area">
+            <h3>退款原因</h3>
+            <span class="subtitle"></span>
+        </div>
+        <div class="option-area">
+            <ul>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>退运费</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options" >
+                    <div>
+                        <p>大小/尺寸与商品描述不符</p>
+                    </div>
+                    <i class="toggle-icon selected"></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>颜色/图案/款式与商品描述不符</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>材质面料与商品描述不符</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>功能/效果与商品描述不符</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>做工问题</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>缩水/褪色</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>有刺激性异味</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>少件/漏发</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>包装/商品破损/污渍</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>假冒品牌</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>未按约定时间发货</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>发票问题</p>
+                    </div>
+                    <i class="toggle-icon "></i>
+                </li>
+                <li class="J_mod-select-options">
+                    <div>
+                        <p>卖家发错货</p>
+                    </div>
+                    <i class="toggle-icon"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="sticky-bottom">
+            <button>关闭</button>
+        </div>
+    </div>
+</body>
+<script src="jquery-1.7.2.js"></script>
+<script>  
+var select_container=$('.select_container')
+var popup_mains=$('.popup-main-select')
+var popBg=$('.popup-bg-select')
+var option_li=$('.option-area li')
+var title=$('.select-view .title')
+//点击选择原因底部出现弹框
+select_container.click(function(e){
+    e.stopPropagation()
+    popup_mains.slideDown()
+    popBg.show();
+})
+//点击document 底部弹框隐藏
+$(document).click(function(){
+    popup_mains.slideUp()
+    popBg.hide();
+})
+//点击底部弹框中的每一个选项 
+option_li.click(function(){
+    var htm=$(this).find('p').html();
+    console.log(htm)
+    $(this).find('.toggle-icon').addClass('selected')
+    $(this).siblings().find('.toggle-icon').parents('li').find('.toggle-icon').removeClass('selected')
+    title.html(htm)
+})
+</script>
+</html>
